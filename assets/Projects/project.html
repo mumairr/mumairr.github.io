@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<link rel="icon" href="../logo.6f8f347d.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="css/slick.css" />
+	<link rel="stylesheet" href="css/slick-theme.css" />
+
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="../index.5b39deb7.css">
+	<style>
+		body {
+			color: white !important;
+			font-size: small;
+			text-align: justify;
+		}
+
+		aside {
+			color: black;
+		}
+
+		.l-header {
+			background: #000 !important;
+		}
+
+		.nav__logo,
+		.nav__logo:active,
+		.nav__logo:visited,
+		.nav__logo:focus {
+			color: #fff !important;
+		}
+
+		.nav__menu {
+			background-color: transparent !important;
+		}
+
+		.nav__link {
+			color: white !important;
+		}
+
+		main {
+			margin-top: 4em !important;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id=c></canvas>
+	<div class="cur" id="circle">
+		<div class="main-cur"></div><img class="satelite" src="https://bit.ly/30JAPdZ" alt="">
+	</div>
+	<header class="l-header">
+		<nav class="nav bd-grid">
+			<div class="nav__logo">
+				<div id="projectTitle"></div>
+			</div>
+			<div class="nav__menu" id="nav-menu">
+				<ul class="nav__list">
+					<li class="nav__item"><a href="../../index.html" class="nav__link active">Back</a></li>
+				</ul>
+			</div>
+			<div class="nav__toggle" id="nav-toggle">
+				<i class='bx bx-menu'></i>
+			</div>
+		</nav>
+	</header>
+
+	<main id="main">
+	</main>
+
+	<footer>
+		<p class="copyright"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2023 | Made by Muhammad Umair
+		</p>
+	</footer>
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="js/slick.js"></script>
+
+	<script type="text/javascript">
+		(function () {
+			var anim, createStars, ctx, degrees, dotGap, dotRadius, draw, drawBody, drawPlanetGradient, ease, halfHeight, halfWidth, height, likelyShift, mapValueToRange, maxStarSize, maxStarSpeed, orbitRadius, orbitRadiusMultiplier, planetHalo, planetRadius, progress, ratio, reflectPosition, resize, shiftLight, speed, starColor, starFieldHeight, starFieldWidth, starPercent, stars, unlikelyShift, width;
+
+			ratio = function (value) {
+				return value * devicePixelRatio;
+			};
+
+			mapValueToRange = function (value, fromMin, fromMax, toMin, toMax) {
+				return toMin + (((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin));
+			};
+
+			degrees = 180;
+
+			planetRadius = ratio(22);
+
+			planetHalo = 2.5;
+
+			dotRadius = ratio(1.5);
+
+			dotGap = ratio(25);
+
+			speed = 0.04;
+
+			maxStarSize = ratio(1.2);
+
+			maxStarSpeed = 0.25;
+
+			starPercent = 0.0002;
+
+			orbitRadiusMultiplier = 2;
+
+			likelyShift = 0.5;
+
+			unlikelyShift = 0.1;
+
+			reflectPosition = 0.6;
+
+			width = 0;
+
+			height = 0;
+
+			halfWidth = 0;
+
+			halfHeight = 0;
+
+			anim = null;
+
+			orbitRadius = 0;
+
+			stars = [];
+
+			starFieldWidth = 0;
+
+			starFieldHeight = 0;
+
+			ctx = c.getContext('2d');
+
+			progress = 0;
+
+			ease = 0;
+
+			draw = function () {
+				var cos, dotRadians, g, i, j, k, len, len1, radians, ref, sin, star, sx, sy, x, y;
+				degrees += speed;
+				if (degrees > 360) {
+					degrees -= 360;
+				}
+				if (progress > 1) {
+					progress = ease = 1;
+				} else if (progress < 1) {
+					progress += 0.01;
+					ease = 1 - Math.pow(1 - progress, 3);
+					ctx.globalAlpha = ease;
+				}
+				ctx.clearRect(0, 0, width, height);
+				radians = degrees * (Math.PI / 180);
+				cos = Math.cos(radians);
+				sin = Math.sin(radians);
+				x = orbitRadius * cos + sin;
+				y = -orbitRadius * sin + cos;
+				for (j = 0, len1 = stars.length; j < len1; j++) {
+					star = stars[j];
+					drawBody((star[0] - (starFieldWidth / 2)) + (star[4] * x), (star[1] - (starFieldHeight / 2)) + (star[4] * y), star[2] * ease, star[3]);
+				}
+				len = Math.floor(Math.min((2 * Math.PI * orbitRadius) / ((dotRadius * 2) + dotGap)));
+				for (i = k = 0, ref = len; 0 <= ref ? k <= ref : k >= ref; i = 0 <= ref ? ++k : --k) {
+					dotRadians = (i * (360 / len)) * (Math.PI / 180);
+					drawBody(x + (orbitRadius * Math.cos(dotRadians)), y + (orbitRadius * Math.sin(dotRadians)), dotRadius * ease, '#52c2ef');
+				}
+				ctx.save();
+				ctx.globalAlpha = 1;
+				drawPlanetGradient(planetHalo, planetRadius * ease, 0, 0, [[0, 'transparent'], [0.78, '#000'], [1, '#00374e']]);
+				ctx.restore();
+				drawPlanetGradient(ease, 0, planetRadius * (reflectPosition * ease) * cos, planetRadius * (reflectPosition * ease) * sin, [[0, '#005071'], [0.3, '#0594d1'], [0.6, '#52c2ef'], [1, '#60d0ff']]);
+				sx = x + halfWidth;
+				sy = y + halfHeight;
+				g = ctx.createRadialGradient(sx, sy, orbitRadius * 1.2, sx, sy, 0);
+				g.addColorStop(0, 'transparent');
+				g.addColorStop(0.5, 'rgba(160, 100, 150, 0.25)');
+				g.addColorStop(1, 'rgba(197, 217, 255, 0.6)');
+				ctx.rect(0, 0, width, height);
+				ctx.fillStyle = g;
+				ctx.fill();
+				return anim = requestAnimationFrame(draw);
+			};
+
+			createStars = function () {
+				var i, j, ref, results, size;
+				starFieldWidth = width + (orbitRadius * 2 * maxStarSpeed);
+				starFieldHeight = height + (orbitRadius * 2 * maxStarSpeed);
+				stars = [];
+				results = [];
+				for (i = j = 0, ref = starFieldWidth * starFieldHeight * starPercent; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+					size = Math.random();
+					results.push(stars.push([Math.random() * starFieldWidth, Math.random() * starFieldHeight, maxStarSize * size, starColor(size), maxStarSpeed * size]));
+				}
+				return results;
+			};
+
+			starColor = function (size) {
+				var b, blueshift, chance, g, r, redshift;
+				if (size > 2 / 3) {
+					redshift = unlikelyShift;
+					blueshift = likelyShift;
+				} else if (size < 1 / 3) {
+					redshift = likelyShift;
+					blueshift = unlikelyShift;
+				} else {
+					redshift = blueshift = 1 / 3;
+				}
+				chance = Math.random();
+				if (chance < redshift) {
+					r = 255;
+					g = b = shiftLight();
+				} else if (chance < redshift + blueshift) {
+					r = g = shiftLight();
+					b = 255;
+				} else {
+					r = g = b = 255;
+				}
+				return 'rgba(' + r + ',' + g + ',' + b + ',' + Math.random() + ')';
+			};
+
+			shiftLight = function () {
+				return Math.round(mapValueToRange(Math.random(), 0, 1, 96, 255));
+			};
+
+			drawBody = function (x, y, radius, fill, alpha) {
+				x += halfWidth;
+				y += halfHeight;
+				if (x + radius < 0 || x - radius > width || y + radius < 0 || y - radius > height) {
+					return;
+				}
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, 2 * Math.PI);
+				ctx.fillStyle = fill;
+				return ctx.fill();
+			};
+
+			drawPlanetGradient = function (radiusMultiplier, endCircleRadius, endCircleXAdd, endCircleYSubtract, colorStops) {
+				var colorStop, gradient, j, len1;
+				gradient = ctx.createRadialGradient(halfWidth, halfHeight, planetRadius * radiusMultiplier, halfWidth + endCircleXAdd, halfHeight - endCircleYSubtract, endCircleRadius);
+				for (j = 0, len1 = colorStops.length; j < len1; j++) {
+					colorStop = colorStops[j];
+					gradient.addColorStop(colorStop[0], colorStop[1]);
+				}
+				return drawBody(0, 0, planetRadius * radiusMultiplier, gradient);
+			};
+
+			resize = function () {
+				width = c.width = ratio(innerWidth);
+				height = c.height = ratio(innerHeight);
+				halfWidth = width / 2;
+				halfHeight = height / 2;
+				orbitRadius = ((Math.max(width, height) / 2) * orbitRadiusMultiplier) - planetRadius;
+				createStars();
+				cancelAnimationFrame(anim);
+				return draw();
+			};
+
+			resize();
+
+			addEventListener('resize', resize);
+
+		}).call(this);
+		function sliderInit() {
+			$("#projectTitle").html("#" + document.title.replace(/ /g, ""));
+			$('.your-class').slick({
+				arrows: true,
+				dots: true,
+				adaptiveHeight: true,
+				fade: true
+			});
+		};
+
+		let links = document.querySelector(".main-content a");
+		const cursors = document.querySelector(".cur");
+		document.addEventListener("mousemove", (e) => {
+			let x = e.pageX;
+			let y = e.pageY;
+			cursors.setAttribute(
+				"style",
+				"top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;"
+			);
+		});
+
+		document.addEventListener("click", () => {
+			cursors.classList.add("expand");
+			setTimeout(() => {
+				cursors.classList.remove("expand");
+			}, 500);
+		});
+
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const id = urlParams.get('id')
+		document.title = id.replace(/,/g, " ");
+		$(function () {
+			$("#main").load(id + ".html");
+			setTimeout(() => {
+				sliderInit();
+			}, 1000);
+		});
+	</script>
+</body>
+
+</html>

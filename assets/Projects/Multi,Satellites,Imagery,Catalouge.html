@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row topspace">
+        <article class="col-sm-8 maincontent">
+            <div class="your-class" id="">
+                <div><img src="images/1/0.jpg"></div>
+                <div><img src="images/1/1.jpg"></div>
+                <div><img src="images/1/2.jpg"></div>
+                <div><img src="images/1/3.jpg"></div>
+                <div><img src="images/1/4.jpg"></div>
+                <div><img src="images/1/5.jpg"></div>
+                <div><img src="images/1/6.jpg"></div>
+                <div><img src="images/1/7.jpg"></div>
+                <div><img src="images/1/8.jpg"></div>
+                <div><img src="images/1/9.jpg"></div>
+                <div><img src="images/1/10.jpg"></div>
+                <div><img src="images/1/11.jpg"></div>
+                <div><img src="images/1/12.jpg"></div>
+                <div><img src="images/1/13.jpg"></div>
+                <div><img src="images/1/14.jpg"></div>
+                <div><img src="images/1/15.jpg"></div>
+                <div><img src="images/1/16.jpg"></div>
+            </div>
+            <br>
+            <p>While doing my MS in Remote Sensing & GIS, I needed to find some satellite images from multiple sensors around the world and work on them. I had to surf through multiple satellite sensor portals like USGS, Sentinel Hub, AtlasOne etc. and go through steps like signing up, account activations, drawing and downloading data from them before being able to use them on my end. This effort was hectic and ofcourse not much automated.</p>
+            <br>
+            <p>I accepted the challenge to design an online portal, which would house data from multiple satellite sensors under one room and would serve user with the best available dataset from multiple soruces. It involved multiple satellites, some of them were hosted locally on a custom built spatial database, others were interacted on the fly from their open-ended APIs.</p>
+            <br>
+            <p>Metadata parsers were written for locally hosted satellite sensors in c#, inserted into a postgresql database and online APIs were interacted dynamically for the AOI drawn by the user and results from both the sources was merged into one before being served over a web based gis portal that was built using Openlayers & Jscript </p>
+            <br>
+            <p>User can alter the criteria & satellites to filter out the results before adding up them to the cart and generating an online PDF report after selection of the products before selecting if they would like the raw imagery to be downloaded or served dynamically over the portal itself on the next login via a WMS service </p>
+            <br>
+            <p>Only the data that intersects witht the AOI for the selected scene, is clipped via a python script and saved onto the folder of the user. If ftp method is selected, nothing extra happens. If WMS is selected, another python script runs in the back-end on the server and creates a store on the geoserver for serving the imagery on the user portal when the user logs in next time. </p>
+            <br>
+            <p>
+            This project is of it's own kind and not much work has been done in the field before. Individual catalogs are present for the respective satellite sensors but none of the portal shows it combined under a single roof. 
+            </p>
+        </article>
+        <aside class="col-md-4 sidebar sidebar-left">
+            <div class="widget">
+                <ul class="list-group">
+                    <li class="list-group-item pull-left">
+                        <h4 class="custom-subsubheader">MS Project</h4>
+                        <p><strong>2023</strong></p>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>

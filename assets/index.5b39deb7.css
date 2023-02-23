@@ -9188,7 +9188,8 @@ Footer
 footer {
   border-top: 1px solid rgba(210, 210, 210, 1);
   position: absolute;
-  width: -webkit-fill-available;
+  width: 100%;
+  bottom: 0;
   text-align: end;
   background: black;
   color: white;

@@ -1,25 +1,17 @@
-# Sameer Bhavar Portfolio
-<!-- sameer bhavar Portfolio -->
+# Muhammad Umair Portfolio
 
-My portfolio This portfolio  created using html,css,javascript and Bootstrap.In this portfolio I added my projects my tech skill
+My portfolio This portfolio created using html,css,javascript, sliderjs and Bootstrap.
+Feel free to take ideas from, please avoid copying any pictures and data.
   
   ## Tech Stacks 🛠
     
     HTML 5, CSS, JavaScript and Bootstrap
     
   ## Team Members :-
-  - Sameer Bhavar
+  - Muhammad Umair
  
-  
-  ## Clone Snaps :-
-  ![github landing](https://user-images.githubusercontent.com/50591381/192941496-89e0c422-9f4c-44ee-b1af-c36cd012ca19.PNG)
-
-  
-
-  
-  
-  # Deployed Link :-
-    https://sameerbhavar.github.io/
+    # Deployed Link :-
+    https://mumairr.github.io/
     
   
 

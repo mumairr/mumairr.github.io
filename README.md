@@ -12,7 +12,3 @@ Feel free to take ideas from, please avoid copying any pictures and data.
  
     # Deployed Link :-
     https://mumairr.github.io/
-    
-  
-
-

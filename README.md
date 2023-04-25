@@ -1,6 +1,6 @@
 # Muhammad Umair Portfolio
 
-My portfolio This portfolio created using html,css,javascript, sliderjs and Bootstrap.
+My portfolio is created using html,css,javascript, sliderjs and Bootstrap.
 Feel free to take ideas from, please avoid copying any pictures and data.
   
   ## Tech Stacks 🛠
@@ -12,7 +12,3 @@ Feel free to take ideas from, please avoid copying any pictures and data.
  
     # Deployed Link :-
     https://mumairr.github.io/
-    
-  
-
-

@@ -7119,3 +7119,7 @@ a.credit {
 .form-control:focus {
   color: black !important;
 }
+
+.card-header {
+  padding: unset !important;
+}
